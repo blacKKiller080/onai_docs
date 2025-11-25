@@ -56,6 +56,13 @@ class _TaskPageState extends State<TaskPage> {
   Widget build(BuildContext context) {
     return BlocConsumer<TaskCubit, TaskState>(listener: (context, state) {
       state.whenOrNull(
+        loadedState: (tasks) {
+          if (searchController.text.isEmpty) {
+            filteredTasks = tasks;
+          } else {
+            filterTasks(tasks);
+          }
+        },
         errorState: (message) {
           buildErrorCustomSnackBar(context, message);
         },
@@ -89,10 +96,6 @@ class _TaskPageState extends State<TaskPage> {
                   );
                 },
                 loadedState: (tasks) {
-                  if (filteredTasks.isEmpty && searchController.text.isEmpty) {
-                    filteredTasks = tasks;
-                  }
-
                   return ListView.separated(
                     itemCount: filteredTasks.length,
                     itemBuilder: (context, index) {

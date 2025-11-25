@@ -82,10 +82,12 @@ class _EditOrderPageState extends State<EditOrderPage> {
                         widget.task.description,
                         trimMode: TrimMode.Line,
                         trimLines: 3,
-                        colorClickableText: AppColors.kBlue,
+                        colorClickableText: AppColors.kRed,
                         trimCollapsedText: ' Развернуть',
                         trimExpandedText: '  Скрыть',
-                        moreStyle: AppTextStyles.os14w400,
+                        moreStyle: AppTextStyles.os14w400.copyWith(
+                          color: AppColors.kBlue,
+                        ),
                       ),
                       // Row(
                       //   crossAxisAlignment: CrossAxisAlignment.start,
